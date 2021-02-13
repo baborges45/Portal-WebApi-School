@@ -31,12 +31,15 @@ namespace PortalWeb.WebAPI
       services.AddDbContext<SmartContext>(
           context => context.UseSqlite(Configuration.GetConnectionString("Default"))
       );
-
-      services.AddScoped<IRepository, Repository>();
       services.AddControllers()
                    .AddNewtonsoftJson(
-                     opt => opt.SerializerSettings.ReferenceLoopHandling = 
+                     opt => opt.SerializerSettings.ReferenceLoopHandling =
                      Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+      services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+      services.AddScoped<IRepository, Repository>();
+
       services.AddSwaggerGen(c =>
       {
         c.SwaggerDoc("v1", new OpenApiInfo { Title = "PortalWeb.WebAPI", Version = "v1" });

@@ -38,7 +38,7 @@ namespace PortalWeb.WebAPI.Data
 
       if (includeProfessor)
       {
-        query = query.Include(a => a.AlunosDisciplina)
+        query = query.Include(a => a.AlunosDisciplinas)
                               .ThenInclude(ad => ad.Disciplina)
                              .ThenInclude(d => d.Professor);
       }
@@ -54,14 +54,14 @@ namespace PortalWeb.WebAPI.Data
 
       if (includeProfessor)
       {
-        query = query.Include(a => a.AlunosDisciplina)
+        query = query.Include(a => a.AlunosDisciplinas)
                               .ThenInclude(ad => ad.Disciplina)
                              .ThenInclude(d => d.Professor);
       }
 
       query = query.AsNoTracking()
                             .OrderBy(a => a.Id)
-                            .Where(aluno => aluno.AlunosDisciplina.Any(ad => ad.DisciplinaId == disciplinaId));
+                            .Where(aluno => aluno.AlunosDisciplinas.Any(ad => ad.DisciplinaId == disciplinaId));
 
       return query.ToArray();
     }
@@ -72,7 +72,7 @@ namespace PortalWeb.WebAPI.Data
 
       if (includeProfessor)
       {
-        query = query.Include(a => a.AlunosDisciplina)
+        query = query.Include(a => a.AlunosDisciplinas)
                               .ThenInclude(ad => ad.Disciplina)
                              .ThenInclude(d => d.Professor);
       }

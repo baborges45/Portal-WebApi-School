@@ -2,13 +2,13 @@ using System;
 
 namespace PortalWeb.WebAPI.Models
 {
-  public class AlunoDisciplina
+  public class AlunoCurso
   {
-    public AlunoDisciplina() { }
-    public AlunoDisciplina(int alunoId, int disciplinaId)
+    public AlunoCurso() { }
+    public AlunoCurso(int alunoId, int cursoId)
     {
       this.AlunoId = alunoId;
-      this.DisciplinaId = disciplinaId;
+      this.CursoId = cursoId;
     }
     public int AlunoId { get; set; }
 
@@ -18,8 +18,8 @@ namespace PortalWeb.WebAPI.Models
 
     public DateTime? DataFim { get; set; }
 
-    public int DisciplinaId { get; set; }
+    public int CursoId { get; set; }
 
-    public Disciplina Disciplina { get; set; }
+    public Cursos Curso { get; set; }
   }
 }
