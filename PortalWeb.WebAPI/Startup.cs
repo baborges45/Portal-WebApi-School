@@ -40,6 +40,12 @@ namespace PortalWeb.WebAPI
 
       services.AddScoped<IRepository, Repository>();
 
+      // services.AddVersionedApiExplorer(options =>
+      // {
+      //   options.GroupNameFormat = "'v' VVV";
+      //   options.SubstituteApiVersionInUrl = true;
+      // });
+
       services.AddSwaggerGen(c =>
       {
         c.SwaggerDoc("v1", new OpenApiInfo { Title = "PortalWeb.WebAPI", Version = "v1" });

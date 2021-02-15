@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PortalWeb.WebAPI.Data;
 using PortalWeb.WebAPI.Dtos;
+using PortalWeb.WebAPI.Helpers;
 using PortalWeb.WebAPI.Models;
 
 namespace PortalWeb.WebAPI.Controllers
@@ -24,10 +26,15 @@ namespace PortalWeb.WebAPI.Controllers
     }
 
     [HttpGet]
-    public IActionResult Get()
+    public async Task<IActionResult> Get([FromQuery] PageParams pageParams)
     {
-      var alunos = _repo.GetAllAlunos(true);
-      return Ok(_mapper.Map<IEnumerable<AlunoDto>>(alunos));
+      var alunos = await _repo.GetAllAlunosAsync(pageParams, true);
+
+      var alunosResult = _mapper.Map<IEnumerable<AlunoDto>>(alunos);
+
+      Response.AddPagination(alunos.CurrentPage, alunos.PageSize, alunos.TotalCount, alunos.TotalPages);
+
+      return Ok(alunosResult);
     }
 
     [HttpGet("getRegister")]
