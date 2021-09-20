@@ -1,4 +1,4 @@
-## Projeto Web API Asp.net core 5.0 + EF Core + Docker + Angular
+## Projeto Web API Asp.net core 5.0 + EF Core + Angular + Docker 
 
 ### Criando um portal Web API
 
